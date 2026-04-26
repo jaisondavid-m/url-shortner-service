@@ -6,6 +6,8 @@ import (
 
 	"log"
 	"server/config"
+	"server/middlewares"
+	"server/routes"
 
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
@@ -27,7 +29,9 @@ func main() {
 
 	r := gin.Default()
 
-	// r.Use()
+	r.Use(middlewares.CORSMiddleware())
+
+	routes.RegisterRoutes(r)
 
 	r.Run(":8000")
 
