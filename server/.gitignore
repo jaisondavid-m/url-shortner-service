@@ -1,0 +1,47 @@
+.env
+.env.*
+*.env
+
+#logs
+*.log
+
+#Build outputs
+/bin/
+/build/
+/dist/
+*.exe
+*.dill
+*.so
+*.so
+*.dylib
+
+#Test binaries / coverage
+*.test
+*.out
+coverage.out
+
+#Go modules cache
+vendor/
+
+#IDE / Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+tmp/
+temp/
+
+#Docker
+*.pid
+*.key
+*.crt
+
+# Air / hot reload
+.air/
