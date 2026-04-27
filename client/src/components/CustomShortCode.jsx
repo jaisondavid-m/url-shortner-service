@@ -1,22 +1,25 @@
-import React , { useState , useRef } from "react"
+import React, { useState, useRef } from "react"
 import api from "../api/axios.js"
 
 function CustomShortCode() {
 
-    const [url,setUrl] = useState("")
+    const [url, setUrl] = useState("")
     // const [customCode, setCustomCode] = useState("")
     const [result, setResult] = useState("")
     const [loading, setLoading] = useState(false)
     const [code, setCode] = useState("")
     const [exists, setExists] = useState(null)
+    const [showCopyModal, setShowCopyModal] = useState(false)
     const [checking, setChecking] = useState(false)
     const timeoutRef = useRef(null)
 
     const handleSubmit = async () => {
+        // setCode("")
+        // setUrl("")
         setLoading(true)
         setResult("")
         try {
-            const res = await api.post("/shorten/custom",{
+            const res = await api.post("/shorten/custom", {
                 original_url: url,
                 custom_code: code,
             })
@@ -25,6 +28,17 @@ function CustomShortCode() {
             setResult(err?.response?.data?.message || "Error creating custom link")
         }
         setLoading(false)
+    }
+
+    const handleClear = () => {
+        setUrl("")
+        setCode("")
+        setResult("")
+        setExists(null)
+        setChecking(false)
+        if (timeoutRef.current) {
+            clearTimeout(timeoutRef.current)
+        }
     }
 
     const checkAvailability = async (value) => {
@@ -102,15 +116,56 @@ function CustomShortCode() {
                     checking
                 }
             >
-                {loading ? "Craeting" : "Create Custom Link"}
+                {loading ? "Creating..." : "Create Custom Link"}
+            </button>
+            <button
+                onClick={handleClear}
+                className="w-full border border-gray-400 text-gray-600 p-3 rounded-lg hover:bg-gray-100 transition"
+            >
+                Clear Inputs
             </button>
             {
                 result && (
-                    <div className="p-3 bg-[#F8F5F2] rounded-lg text-[#5C3A21] break-all">
-                        {result}
+                    <div className="p-4 bg-[#F8F5F2] border border-[#E8DED6] rounded-xl text-[#5C3A21] space-y-3">
+                        <p className="text-xs text-gray-500">Your Short URL</p>
+                        <div className="flex items-center justify-between gap-2">
+                            <span className="break-all text-sm font-medium">
+                                {result}
+                            </span>
+                            <button
+                                onClick={() => {
+                                    navigator.clipboard.writeText(result)
+                                    setShowCopyModal(true)
+                                }}
+                                className="px-3 py-1 text-sm bg-[#5C3A21] text-white rounded-lg hover:opacity-90 transition"
+                            >
+                                Copy
+                            </button>
+                        </div>
+                        <p className="text-xs text-green-600">
+                            Click copy to save URL to Clipboard
+                        </p>
                     </div>
+
                 )
             }
+            {showCopyModal && (
+                <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
+                    <div className="bg-white p-6 rounded-xl shadow-lg border border-[#E8DED6] w-[90%] max-w-sm text-center space-y-4">
+                        <div className="text-green-600 text-2xl">✔</div>
+                        <h2 className="text-lg font-semibold text-[#5C3A21]">Copied Successfully</h2>
+                        <p className="text-sm text-gray-500">
+                            Your short URL has been copied to clipboard.
+                        </p>
+                        <button
+                            onClick={() => setShowCopyModal(false)}
+                            className="px-4 py-2 bg-[#5C3A21] text-white rounded-lg hover:opacity-90 transition"
+                        >
+                            Close
+                        </button>
+                    </div>
+                </div>
+            )}
         </div>
     )
 }
