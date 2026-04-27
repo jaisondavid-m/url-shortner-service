@@ -6,6 +6,7 @@ import PublicRoute from "../components/PublicRoute.jsx"
 import TestPage from "../pages/TestPage.jsx"
 import Auth from "../pages/Auth.jsx"
 import Home from "../pages/Home.jsx"
+import Profile from "../pages/Profile.jsx"
 
 export default function App() {
   return(
@@ -19,6 +20,16 @@ export default function App() {
               </AppLayout>
             </ProtectedRoute>
             } 
+          />
+          <Route
+              path="/profile"
+              element={
+                <ProtectedRoute>
+                  <AppLayout>
+                    <Profile/>
+                  </AppLayout>
+                </ProtectedRoute>
+              }
           />
           <Route path="/test" element={<TestPage/>} />
         </Routes>
