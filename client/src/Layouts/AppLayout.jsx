@@ -5,10 +5,15 @@ import Footer from "../components/Footer.jsx"
 function AppLayout({ children }) {
     return (
         <div>
-            <Navbar/>
-            {children}
-            <Footer/>
+            <div className="min-h-screen flex flex-col bg-[#F8F5F2]">
+                <Navbar />
+                <main className="flex-1 flex">
+                    {children}
+                </main>
+            </div>
+            <Footer />
         </div>
+
     )
 }
 

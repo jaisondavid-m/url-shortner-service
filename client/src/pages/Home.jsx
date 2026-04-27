@@ -13,7 +13,7 @@ function Home() {
         setSearchParams({ tab: value })
     }
     return (
-        <div className="min-h-screen bg-[#F8F5F2] flex items-center justify-center">
+        <div className="w-full flex-1 flex items-center justify-center bg-[#F8F5F2]">
             <div className="w-full max-w-xl">
                 <div className="text-center mb-6">
                     <h1 className="text-3xl font-bold text-[#5C3A21]">URL Shortener</h1>

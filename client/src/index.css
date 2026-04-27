@@ -7,3 +7,7 @@
 .btn {
     @apply w-full bg-[#5C3A21] text-white p-3 rounded-lg hover:opacity-90 transition;
 }
+
+html, body, #root {
+    height: 100%;
+}
