@@ -3,6 +3,8 @@ package routes
 import (
 
 	"server/handlers"
+	"server/middlewares"
+
 	"github.com/gin-gonic/gin"
 
 )
@@ -11,6 +13,17 @@ func RegisterRoutes(r *gin.Engine) {
 	
 	api := r.Group("/api")
 
-	api.GET("/test",handlers.TestHandler)
+	auth := api.Group("/auth")
+	{
+		auth.POST("/register",handlers.Register)
+		auth.POST("/login",handlers.Login)
+		auth.POST("/google",handlers.GoogleLogin)
+	}
+
+	protected := api.Group("/")
+	protected.Use(middlewares.AuthMiddleware())
+	{
+		protected.GET("/test",handlers.TestHandler)
+	}
 
 }

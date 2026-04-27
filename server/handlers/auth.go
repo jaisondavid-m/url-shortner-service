@@ -116,7 +116,7 @@ func GoogleLogin(c *gin.Context) {
 
 	email := payload.Claims["email"].(string)
 	name := payload.Claims["name"].(string)
-	picture := payload.Claims["sub"].(string)
+	picture := payload.Claims["picture"].(string)
 	googleID := payload.Claims["sub"].(string)
 
 	var user models.User
@@ -140,6 +140,12 @@ func GoogleLogin(c *gin.Context) {
 	}
 
 	token, _ := utils.GenerateToken(user.Email)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError,gin.H{
+			"message":"Token error",
+		})
+		return
+	}
 
 	c.JSON(http.StatusOK,gin.H{
 		"token":token,

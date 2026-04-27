@@ -7,7 +7,7 @@ type User struct {
 	Name 		string 		`json:"name"`
 	Email 		string 		`json:"email" gorm:"unique"`
 	Password 	string 		`json:"-"`
-	GoogleID 	string 		`json:"google+id"`
+	GoogleID 	string 		`json:"google_id"`
 	Avatar 		string 		`json:"avatar"`
 	Role 		string 		`json:"role"`
 	IsActive 	bool 		`json:"is_active"`

@@ -22,6 +22,7 @@ func main() {
 	}
 
 	config.Connect()
+	config.Migrate()
 
 	if config.DB == nil {
 		panic("Database is not initilized")
@@ -30,6 +31,7 @@ func main() {
 	r := gin.Default()
 
 	r.Use(middlewares.CORSMiddleware())
+	// r.Use(middlewares.AuthMiddleware())
 
 	routes.RegisterRoutes(r)
 

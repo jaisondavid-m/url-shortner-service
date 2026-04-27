@@ -1,1 +1,9 @@
-@import "tailwindcss"
+@import "tailwindcss";
+
+.input {
+    @apply w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-900;
+}
+
+.btn {
+    @apply w-full bg-[#5C3A21] text-white p-3 rounded-lg hover:opacity-90 transition;
+}
