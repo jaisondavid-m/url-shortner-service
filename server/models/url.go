@@ -14,3 +14,8 @@ type URL struct {
 type UrlReq struct {
 	OriginalURL 	string 		`json:"original_url"`
 }
+
+type CustomUrlReq struct {
+	OriginalURL 	string 		`json:"original_url"`
+	CustomCode 		string 		`json:"custom_code"`
+}
