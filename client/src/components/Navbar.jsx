@@ -1,5 +1,5 @@
 import React , { useState } from "react"
-import { FaLink , FaHome , FaPlus , FaSignOutAlt, FaRandom, FaKeyboard } from "react-icons/fa"
+import { FaLink , FaHome , FaPlus , FaSignOutAlt, FaRandom, FaKeyboard , FaUser } from "react-icons/fa"
 import { useNavigate , Link , useLocation } from "react-router-dom"
 import { useAuth } from "../context/AuthContext.jsx"
 
@@ -41,6 +41,13 @@ function Navbar() {
                 >
                     <FaKeyboard/>
                     Custom
+                </button>
+                <button
+                    onClick={() => navigate("/profile")}
+                    className="flex items-center gap-2 text-gray-600 hover:text-[#5C3A21] transition"
+                >
+                    <FaUser className=""/>
+                    Profile
                 </button>
             </div>
             <div className="flex items-center gap-4">
