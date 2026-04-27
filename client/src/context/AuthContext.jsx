@@ -21,6 +21,8 @@ export const AuthProvider = ({ children }) => {
 
     },[])
 
+    const isAuthenticated = !!user
+
     const saveAuth = (data) => {
         localStorage.setItem("token",data.token)
         localStorage.setItem("user",JSON.stringify(data.user))
@@ -83,7 +85,7 @@ export const AuthProvider = ({ children }) => {
 
     return (
         <AuthContext.Provider
-            value={{ user , loading , login , register , googleLogin , logout }}
+            value={{ user , loading , login , register , googleLogin , logout , isAuthenticated }}
         >
             {children}
         </AuthContext.Provider>
