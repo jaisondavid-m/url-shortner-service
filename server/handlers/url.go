@@ -120,3 +120,24 @@ func CreateCustomURL(c *gin.Context) {
 
 }
 
+func GetUserURL(c *gin.Context) {
+
+	userID := c.GetUint("userID")
+
+	var urls []models.URL
+
+	if err := config.DB.Where("user_id = ?",userID).Order("created_at").Find(&urls).Error; err != nil {
+		c.JSON(http.StatusInternalServerError,gin.H{
+			"message":"Unable to fetch URLs",
+			"error":true,
+		})
+		return
+	}
+
+	c.JSON(http.StatusOK,gin.H{
+		"data": urls,
+		"count": len(urls),
+		"success":true,
+		"error":false,
+	})
+}
