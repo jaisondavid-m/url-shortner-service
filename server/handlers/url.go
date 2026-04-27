@@ -119,3 +119,4 @@ func CreateCustomURL(c *gin.Context) {
 	})
 
 }
+
