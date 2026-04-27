@@ -1,12 +1,10 @@
 package routes
 
 import (
-
 	"server/handlers"
 	"server/middlewares"
 
 	"github.com/gin-gonic/gin"
-
 )
 
 func RegisterRoutes(r *gin.Engine) {
@@ -24,6 +22,9 @@ func RegisterRoutes(r *gin.Engine) {
 	protected.Use(middlewares.AuthMiddleware())
 	{
 		protected.GET("/test",handlers.TestHandler)
+		protected.POST("/shorten",handlers.CreateShortURL)
 	}
+
+	r.GET("/:code",handlers.RedirectURL)
 
 }

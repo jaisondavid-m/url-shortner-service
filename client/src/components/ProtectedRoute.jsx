@@ -1,5 +1,6 @@
 import { Navigate } from "react-router-dom"
 import { useAuth } from "../context/AuthContext.jsx"
+import Loading from "../components/Loading.jsx"
 
 function ProtectedRoute({ children }){
 
@@ -7,7 +8,8 @@ function ProtectedRoute({ children }){
 
     if (loading) {
         return (
-            <div>Loading...</div>
+            // <div>Loading...</div>
+            <Loading/>
         )
     }
 

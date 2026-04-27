@@ -9,6 +9,7 @@ func Migrate() {
 
 	err := DB.AutoMigrate(
 		&models.User{},
+		&models.URL{},
 	)
 
 	if err != nil {

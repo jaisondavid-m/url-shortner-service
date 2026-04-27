@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import { useAuth } from "../context/AuthContext.jsx"
 import { useNavigate } from "react-router-dom"
 import { GoogleLogin } from "@react-oauth/google"
+import Loading from "../components/Loading.jsx"
 import { FaLink } from "react-icons/fa"
 
 function Auth() {
@@ -41,6 +42,8 @@ function Auth() {
             setError(res.message)
         }
     }
+
+    // if (loading) return <Loading/>
 
     return (
         <div className="min-h-screen flex flex-col items-center justify-center bg-[#F8F5F2]">

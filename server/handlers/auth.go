@@ -45,7 +45,7 @@ func Register(c *gin.Context) {
 		return
 	}
 
-	token, _ := utils.GenerateToken(user.Email)
+	token, _ := utils.GenerateToken(user.ID,user.Email)
 
 	c.JSON(http.StatusOK,gin.H{
 		"token":token,
@@ -84,7 +84,7 @@ func Login(c *gin.Context) {
 		return
 	}
 
-	token, _ := utils.GenerateToken(user.Email)
+	token, _ := utils.GenerateToken(user.ID,user.Email)
 
 	c.JSON(http.StatusOK,gin.H{
 		"token":token,
@@ -139,7 +139,7 @@ func GoogleLogin(c *gin.Context) {
 		config.DB.Save(&user)
 	}
 
-	token, _ := utils.GenerateToken(user.Email)
+	token, _ := utils.GenerateToken(user.ID,user.Email)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError,gin.H{
 			"message":"Token error",
