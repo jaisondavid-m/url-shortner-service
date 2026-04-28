@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { FaLink, FaHome, FaPlus, FaSignOutAlt, FaRandom, FaKeyboard, FaUser, FaExternalLinkAlt } from "react-icons/fa"
+import { FaLink, FaHome, FaPlus, FaSignOutAlt, FaRandom, FaKeyboard, FaUser, FaExternalLinkAlt, FaList } from "react-icons/fa"
 import { useNavigate, Link, useLocation } from "react-router-dom"
 import { useAuth } from "../context/AuthContext.jsx"
 
@@ -48,6 +48,13 @@ function Navbar() {
                 >
                     <FaExternalLinkAlt />
                     Expand URL
+                </button>
+                <button
+                    onClick={() => navigate("/myurls")}
+                    className="flex items-center gap-2 text-gray-600 hover:text-[#5C3A21] transition"
+                >
+                    <FaList/>
+                    My URLs
                 </button>
                 <button
                     onClick={() => navigate("/profile")}

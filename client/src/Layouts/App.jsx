@@ -8,6 +8,7 @@ import Auth from "../pages/Auth.jsx"
 import Home from "../pages/Home.jsx"
 import Profile from "../pages/Profile.jsx"
 import ExpandURL from "../pages/ExpandURL.jsx"
+import MyURLs from "../pages/MyURLs.jsx"
 
 export default function App() {
   return(
@@ -38,6 +39,16 @@ export default function App() {
                 <ProtectedRoute>
                   <AppLayout>
                     <ExpandURL/>
+                  </AppLayout>
+                </ProtectedRoute>
+              }
+          />
+          <Route
+              path="/myurls"
+              element={
+                <ProtectedRoute>
+                  <AppLayout>
+                    <MyURLs/>
                   </AppLayout>
                 </ProtectedRoute>
               }

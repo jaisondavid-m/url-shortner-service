@@ -27,6 +27,7 @@ func RegisterRoutes(r *gin.Engine) {
 		protected.GET("/shortcode/:code/check",handlers.CheckShortCodeAvailability)
 		protected.GET("/expand",handlers.ExpandURL)
 		protected.GET("/myurls",handlers.GetUserURL)
+		protected.DELETE("/url/:code",handlers.DeleteURL)
 	}
 
 	r.GET("/:code",handlers.RedirectURL)

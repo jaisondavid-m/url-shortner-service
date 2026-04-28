@@ -141,3 +141,42 @@ func GetUserURL(c *gin.Context) {
 		"error":false,
 	})
 }
+
+func DeleteURL(c *gin.Context) {
+
+	code := c.Param("code")
+	userID := c.GetUint("userID")
+
+	var url models.URL
+
+	if err := config.DB.Where("short_code = ?",code).First(&url).Error; err != nil {
+		c.JSON(http.StatusNotFound,gin.H{
+			"message":"URL not found",
+			"error":true,
+		})
+		return
+	}
+
+	if url.UserID != userID {
+		c.JSON(http.StatusForbidden,gin.H{
+			"message":"You are not allowed to delete this URL",
+			"error":true,
+		})
+		return
+	}
+
+	if err := config.DB.Delete(&url).Error; err != nil {
+		c.JSON(http.StatusInternalServerError,gin.H{
+			"message":"Failed to delete URL",
+			"error":true,
+		})
+		return
+	}
+
+	c.JSON(http.StatusOK,gin.H{
+		"message":"URL deleted Successfully",
+		"success":true,
+		"error":false,
+	})
+
+}
