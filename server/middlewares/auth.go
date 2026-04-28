@@ -40,8 +40,24 @@ func AuthMiddleware() gin.HandlerFunc {
 		}
 
 		claims := token.Claims.(jwt.MapClaims)
-		email := claims["email"].(string)
-		role := claims["role"].(string)
+		email, ok := claims["email"].(string)
+		if !ok {
+			c.JSON(http.StatusUnauthorized,gin.H{
+				"message":"Email is missing or invalid in the token",
+				"error":true,
+			})
+			c.Abort()
+			return
+		}
+		role, ok := claims["role"].(string)
+		if !ok {
+			c.JSON(http.StatusUnauthorized,gin.H{
+				"message":"Role is missing or invalid in the token",
+				"error":true,
+			})
+			c.Abort()
+			return
+		}
 		
 		rawID, ok := claims["userID"]
 		if !ok {

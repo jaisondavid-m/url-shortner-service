@@ -7,7 +7,7 @@ function AppLayout({ children }) {
         <div>
             <div className="min-h-screen flex flex-col bg-[#F8F5F2]">
                 <Navbar />
-                <main className="flex-1 flex">
+                <main className="flex-1 w-full">
                     {children}
                 </main>
             </div>

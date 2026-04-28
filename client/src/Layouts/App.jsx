@@ -11,6 +11,7 @@ import ExpandURL from "../pages/ExpandURL.jsx"
 import MyURLs from "../pages/MyURLs.jsx"
 import NotFound from "../pages/NotFound.jsx"
 import RedirectPage from "../pages/RedirectPage.jsx"
+import AdminPage from "../pages/AdminPage.jsx"
 
 export default function App() {
   return(
@@ -51,6 +52,16 @@ export default function App() {
                 <ProtectedRoute>
                   <AppLayout>
                     <MyURLs/>
+                  </AppLayout>
+                </ProtectedRoute>
+              }
+          />
+          <Route
+              path="/admin"
+              element={
+                <ProtectedRoute>
+                  <AppLayout>
+                    <AdminPage/>
                   </AppLayout>
                 </ProtectedRoute>
               }

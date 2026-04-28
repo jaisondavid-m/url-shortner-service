@@ -2,6 +2,7 @@ import React, { useState } from "react"
 import { FaLink, FaHome, FaPlus, FaSignOutAlt, FaRandom, FaKeyboard, FaUser, FaExternalLinkAlt, FaList } from "react-icons/fa"
 import { useNavigate, Link, useLocation } from "react-router-dom"
 import { useAuth } from "../context/AuthContext.jsx"
+import { FaUserShield } from "react-icons/fa"
 
 function Navbar() {
 
@@ -53,7 +54,7 @@ function Navbar() {
                     onClick={() => navigate("/myurls")}
                     className="flex items-center gap-2 text-gray-600 hover:text-[#5C3A21] transition"
                 >
-                    <FaList/>
+                    <FaList />
                     My URLs
                 </button>
                 <button
@@ -63,6 +64,16 @@ function Navbar() {
                     <FaUser className="" />
                     Profile
                 </button>
+                {user.role === "admin" && (
+                    <button
+                        onClick={() => navigate("/admin")}
+                        className="flex items-center gap-2 text-gray-600 hover:text-[#5C3A21] transition"
+                    >
+                        <FaUserShield />
+                        Admin
+                    </button>
+                )}
+
             </div>
             <div className="flex items-center gap-4">
                 {user && (
