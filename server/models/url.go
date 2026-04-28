@@ -12,6 +12,15 @@ type URL struct {
 	Password 		string 		`json:"-"`
 }
 
+type URLResponse struct {
+	ID 				uint 		`json:"id"`
+	OriginalURL 	string 		`json:"original_url"`
+	ShortCode 		string 		`json:"short_code"`
+	UserID 			uint 		`json:"user_id"`
+	Clicks 			int 		`json:"clicks"`
+	CreatedAt 		string 		`json:"created_at"`
+}
+
 type UrlReq struct {
 	OriginalURL 	string 		`json:"original_url"`
 }

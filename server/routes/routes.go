@@ -31,6 +31,12 @@ func RegisterRoutes(r *gin.Engine) {
 		protected.POST("/protected",handlers.CreateProtectedURL)
 	}
 
+	admin := protected.Group("/admin")
+	admin.Use(middlewares.AdminOnly())
+	{
+		admin.GET("/users",handlers.GetAllUsers)
+	}
+
 	r.GET("/:code",handlers.RedirectURL)
 	r.POST("/:code/verify",handlers.VerifyAndRedirect)
 }

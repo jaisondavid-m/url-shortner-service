@@ -13,6 +13,16 @@ type User struct {
 	IsActive 	bool 		`json:"is_active"`
 }
 
+type UserResponse struct {
+	ID 			uint 		`json:"id"`
+	Name 		string 		`json:"name"`
+	Email 		string 		`json:"email"`
+	Avatar 		string 		`json:"avatar"`
+	Role 		string 		`json:"role"`
+	IsActive 	bool 		`json:"is_active"`
+	CreatedAt 	string 		`json:"created_at"`
+}
+
 type RegisterReq struct {
 	Name 		string 		`json:"name"`
 	Email 		string 		`json:"email"`
