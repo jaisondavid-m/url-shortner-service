@@ -9,6 +9,10 @@ function AdminPage() {
     const [urls, setUrls] = useState([])
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState("")
+    const [showDeleteModal, setShowDeleteModal] = useState(false)
+    const [deleteType, setDeleteType] = useState("")
+    const [selectedItem, setSelectedItem] = useState(null)
+    const [deleteLoading, setDeleteLoading] = useState(false)
 
     const fetchUsers = async () => {
         try {
@@ -33,6 +37,37 @@ function AdminPage() {
             setError("Failed to fetch URLs")
         } finally {
             setLoading(false)
+        }
+    }
+
+    const deleteUser = (user) => {
+        setDeleteType("user")
+        setSelectedItem(user)
+        setShowDeleteModal(true)
+    }
+
+    const deleteURL = (url) => {
+        setDeleteType("url")
+        setSelectedItem(url)
+        setShowDeleteModal(true)
+    }
+
+    const handleConfirmDelete = async () => {
+        try {
+            setDeleteLoading(true)
+            if (deleteType === "user") {
+                await api.delete(`/admin/user/${selectedItem.id}`)
+                setUsers(prev => prev.filter(u => u.id !== selectedItem.id))
+            } else {
+                await api.delete(`/admin/url/${selectedItem.short_code}`)
+                setUrls(prev => prev.filter(u => u.short_code !== selectedItem.short_code))
+            }
+            setShowDeleteModal(false)
+            setSelectedItem(null)
+        } catch (err) {
+            setError("Failed to Delete")
+        } finally {
+            setDeleteLoading(false)
         }
     }
 
@@ -86,6 +121,7 @@ function AdminPage() {
                                     <th className="p-3">Role</th>
                                     <th className="p-3">Status</th>
                                     <th className="p-3">Created</th>
+                                    <th className="p-3 text-center">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -119,6 +155,15 @@ function AdminPage() {
                                             </span>
                                         </td>
                                         <td className="p-3">{u.created_at}</td>
+                                        <td className="p-3 text-center">
+                                            <button
+                                                onClick={() => deleteUser(u)}
+                                                disabled={deleteLoading}
+                                                className="px-3 py-1 bg-red-500 text-white text-xs rounded-md hover:bg-red-600"
+                                            >
+                                                {deleteLoading ? "Deleting..." :"Delete"}
+                                            </button>
+                                        </td>
                                     </tr>
                                 ))
                                 )}
@@ -136,12 +181,15 @@ function AdminPage() {
                                     <th className="p-3">User ID</th>
                                     <th className="p-3">Clicks</th>
                                     <th className="p-3">Created</th>
+                                    <th className="p-3 text-center">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {urls.length === 0 ? (
-                                    <tr colSpan="5" className="text-center p-4 text-gray-500">
-                                        No URLs Found
+                                    <tr>
+                                        <td colSpan="5" className="text-center p-4 text-gray-500" >
+                                            No URLs Found
+                                        </td>  
                                     </tr>
                                 ) : (
                                     urls.map((u) => (
@@ -158,6 +206,15 @@ function AdminPage() {
                                             <td className="p-3">{u.user_id}</td>
                                             <td className="p-3">{u.clicks}</td>
                                             <td className="p-3">{u.created_at}</td>
+                                            <td className="p-3 text-center">
+                                                <button
+                                                    onClick={() => deleteURL(u)}
+                                                    disabled={deleteLoading}
+                                                    className="px-3 py-1 bg-red-500 text-white text-xs rounded-md hover:bg-red-600"
+                                                >
+                                                    { deleteLoading ? "Deleting..." : "Delete"}
+                                                </button>
+                                            </td>
                                         </tr>
                                     ))
                                 )}
@@ -166,6 +223,31 @@ function AdminPage() {
                     </div>
                 )}
             </div>
+            {showDeleteModal && (
+                <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
+                    <div className="bg-white rounded-xl p-6 w-[90%] max-w-sm shadow-lg space-y-4">
+                        <h2 className="text-lg font-semibold text-[#5C3A21]">Confirm Delete</h2>
+                        <p className="text-sm text-gray-600">
+                            Are you sure want to delete this {deleteType} ?
+                        </p>
+                        <div className="flex justify-end gap-3">
+                            <button
+                                onClick={() => setShowDeleteModal(false)}
+                                className="px-4 py-2 border rounded-lg text-gray-600 hover:bg-gray-100"
+                            >
+                                Cancel
+                            </button>
+                            <button
+                                onClick={handleConfirmDelete}
+                                disabled={deleteLoading}
+                                className="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600"
+                            >
+                                {deleteLoading ? "Deleting..." : "Delete" }
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     )
 }

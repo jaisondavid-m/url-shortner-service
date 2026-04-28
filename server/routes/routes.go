@@ -36,6 +36,8 @@ func RegisterRoutes(r *gin.Engine) {
 	{
 		admin.GET("/users",handlers.GetAllUsers)
 		admin.GET("/urls",handlers.GetAllURLs)
+		admin.DELETE("/user/:id",handlers.DeleteUser)
+		admin.DELETE("/url/:code",handlers.DeleteAnyURL)
 	}
 
 	r.GET("/:code",handlers.RedirectURL)
