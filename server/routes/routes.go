@@ -35,6 +35,7 @@ func RegisterRoutes(r *gin.Engine) {
 	admin.Use(middlewares.AdminOnly())
 	{
 		admin.GET("/users",handlers.GetAllUsers)
+		admin.GET("/urls",handlers.GetAllURLs)
 	}
 
 	r.GET("/:code",handlers.RedirectURL)
