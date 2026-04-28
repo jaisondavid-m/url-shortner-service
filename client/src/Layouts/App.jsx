@@ -9,6 +9,7 @@ import Home from "../pages/Home.jsx"
 import Profile from "../pages/Profile.jsx"
 import ExpandURL from "../pages/ExpandURL.jsx"
 import MyURLs from "../pages/MyURLs.jsx"
+import NotFound from "../pages/NotFound.jsx"
 
 export default function App() {
   return(
@@ -54,6 +55,7 @@ export default function App() {
               }
           />
           <Route path="/test" element={<TestPage/>} />
+          <Route path="*" element={<NotFound/>} />
         </Routes>
     </BrowserRouter>
   )

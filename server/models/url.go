@@ -9,6 +9,7 @@ type URL struct {
 	UserID 			uint 		`json:"user_id"`
 	User			User		`json:"foreignKey:UserID"`
 	Clicks			int 		`json:"clicks"`
+	Password 		string 		`json:"-"`
 }
 
 type UrlReq struct {
@@ -18,4 +19,9 @@ type UrlReq struct {
 type CustomUrlReq struct {
 	OriginalURL 	string 		`json:"original_url"`
 	CustomCode 		string 		`json:"custom_code"`
+}
+
+type ProtectedUrlReq struct {
+	OriginalURL 	string 		`json:"original_url"`
+	Password 		string		`json:"password"`
 }

@@ -31,5 +31,5 @@ func RegisterRoutes(r *gin.Engine) {
 	}
 
 	r.GET("/:code",handlers.RedirectURL)
-
+	r.POST("/:code/verify",handlers.VerifyAndRedirect)
 }
