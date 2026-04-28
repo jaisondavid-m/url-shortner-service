@@ -7,6 +7,7 @@ function ExpandURL() {
     const [loading, setLoading] = useState(false)
     const [result, setResult] = useState(null)
     const [error, setError] = useState("")
+    const [showPopup, setShowPopup] = useState(false)
 
     const handleExpand = async () => {
 
@@ -66,33 +67,61 @@ function ExpandURL() {
                     >
                         Clear
                     </button>
-                    
+
                 </div>
                 {error && (
-                        <p className="text-red-500 text-sm">{error}</p>
-                    )}
-                    {result && (
-                        <div className="bg-[#F8F5F2] border border-[#E8DED6] p-4 rounded-xl space-y-3">
-                            <div>
-                                <p className="text-xs text-gray-500">Original Input</p>
-                                <p className="text-sm break-all">{result.original}</p>
-                            </div>
-                            <div>
-                                <p className="text-xs text-gray-500">Final URL</p>
-                                <p className="text-sm font-medium text-[#5C3A21] break-all">
-                                    {result.final}
-                                </p>
-                            </div>
+                    <p className="text-red-500 text-sm">{error}</p>
+                )}
+                {result && (
+                    <div className="bg-[#F8F5F2] border border-[#E8DED6] p-4 rounded-xl space-y-3">
+                        <div>
+                            <p className="text-xs text-gray-500">Original Input</p>
+                            <p className="text-sm break-all">{result.original}</p>
+                        </div>
+                        <div>
+                            <p className="text-xs text-gray-500">Final URL</p>
+                            <p className="text-sm font-medium text-[#5C3A21] break-all">
+                                {result.final}
+                            </p>
+                        </div>
+                        <button
+                            onClick={() => {
+                                navigator.clipboard.writeText(result.final)
+                                setShowPopup(true)
+                            }}
+                            className="w-full bg-[#5C3A21] text-white py-2 rounded-lg hover:opacity-90"
+                        >
+                            Copy Final URL
+                        </button>
+                    </div>
+                )}
+            </div>
+            {
+                showPopup && (
+                    <div className="fixed inset-0 flex items-center justify-center bg-black/20 backdrop-blue-sm z-50">
+                        <div className="bg-white rounded-xl p-5 w-80 text-center shadow-xl space-y-4">
+                            <h2 className="text-lg font-semibol text-[#5C3A21]">
+                                Copied !
+                            </h2>
+                            <p className="text-sm text-gray-600 text-[#5C3A21]">
+                                URL copied to clipboard
+                            </p>
                             <button
-                                onClick={() => navigator.clipboard.writeText(result.final)}
-                                className="w-full bg-[#5C3A21] text-white py-2 rounded-lg hover:opacity-90"
+                                onClick={() => {
+                                    setShowPopup(false)
+                                    setTimeout(() => {
+                                        setShowPopup(false)
+                                    }, 2000);
+                                }}
+                                className="px-4 py-2 bg-[#5C3A21] text-white rounded-lg hover:opacity-90"
+
                             >
-                                Copy Final URL
+                                Close
                             </button>
                         </div>
-                    )}
-            </div>
-
+                    </div>
+                )
+            }
         </div>
     )
 
