@@ -10,6 +10,7 @@ import Profile from "../pages/Profile.jsx"
 import ExpandURL from "../pages/ExpandURL.jsx"
 import MyURLs from "../pages/MyURLs.jsx"
 import NotFound from "../pages/NotFound.jsx"
+import RedirectPage from "../pages/RedirectPage.jsx"
 
 export default function App() {
   return(
@@ -54,6 +55,7 @@ export default function App() {
                 </ProtectedRoute>
               }
           />
+          {/* <Route path="/:code" element={<RedirectPage/>} /> */}
           <Route path="/test" element={<TestPage/>} />
           <Route path="*" element={<NotFound/>} />
         </Routes>

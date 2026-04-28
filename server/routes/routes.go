@@ -28,6 +28,7 @@ func RegisterRoutes(r *gin.Engine) {
 		protected.GET("/expand",handlers.ExpandURL)
 		protected.GET("/myurls",handlers.GetUserURL)
 		protected.DELETE("/url/:code",handlers.DeleteURL)
+		protected.POST("/protected",handlers.CreateProtectedURL)
 	}
 
 	r.GET("/:code",handlers.RedirectURL)

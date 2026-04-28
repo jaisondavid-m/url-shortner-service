@@ -8,14 +8,21 @@ function RandomShortCode() {
     const [result, setResult] = useState("")
     const [loading, setLoading] = useState(false)
     const [showCopyModal, setShowCopyModal] = useState(false)
+    const [password, setPassword] = useState("")
+    const [usePassword, setUsePassword] = useState(false)
 
     const handleSubmit = async () => {
         setLoading(true)
         setResult("")
         try {
-            const res = await api.post("/shorten",{
-                original_url: url
-            })
+            const endpoint = usePassword ? "/protected" : "/shorten"
+            const payload = usePassword
+                ? { original_url: url, password }
+                : { original_url: url }
+            // const res = await api.post("/shorten",{
+            //     original_url: url
+            // })
+            const res = await api.post(endpoint,payload)
             setResult(res.data.short_url)
         } catch(err) {
             setResult(err?.response?.data?.message || "Error creating link")
@@ -31,6 +38,23 @@ function RandomShortCode() {
                 onChange={(e) => setUrl(e.target.value)}
                 className="input"
             />
+            <div className="flex items-center gap-2">
+                <input
+                    type="checkbox"
+                    checked={usePassword}
+                    onChange={() => setUsePassword(!usePassword)}
+                />
+                <label className="text-sm">Password Protect</label>
+            </div>
+            {usePassword && (
+                <input
+                    type="password"
+                    placeholder="Enter password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    className="input"
+                />
+            )}
             <button
                 onClick={handleSubmit}
                 className="btn"
