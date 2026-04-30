@@ -4,6 +4,14 @@
 
 ---
 
+## Live Demo
+Try the live application here:
+https://url-shortner-service-eight.vercel.app
+
+### Notes
+* First request may be slightly slow due to backend cold start
+* All data is stored in a remote MySQL database which is TiDB Cloud Database
+
 ## What is This?
 
 It is a full-stack URL shortening web app. You paste a long URL, and it gives you a short one that redirects anyone who visits it. Think Bit.ly or TinyURL - but built fromm scratch, wih you own features and auth system.
