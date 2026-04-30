@@ -10,6 +10,7 @@ import (
 func RegisterRoutes(r *gin.Engine) {
 	
 	api := r.Group("/api")
+	api.GET("/health",handlers.TestHandler)
 
 	auth := api.Group("/auth")
 	{
