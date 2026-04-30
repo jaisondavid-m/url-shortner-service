@@ -147,6 +147,74 @@ GOOGLE_CLIENT_ID=google_client_id
 
 - **Connection pooling** - GORM's underlying `sql.DB` is configured with max open/idle connections and lifetime limits to prevent connection exhaustion on a hosted DB.
 
+## Admin Panel
+
+The application includes a dedicated **Admin Dashboard** that allows priviliged users to manage the entire system.
+
+> Only users with `admin` role can access these endpoints and UI features.
+
+---
+
+## Admin Capabilities
+
+| Feature | Description |
+|---|---|
+| View all Users | Fetch and list all registered users |
+| Delete Users | Remove users (except yourself) |
+| View All URLs | See every URL shortened URL in the system |
+| Delete Any URL | Remove any URL regardless of owner |
+| User Status | Check if users are active/inactive |
+| Role management | Indentify user roles (admin/user) |
+
+---
+
+## Admin API Endpoints
+
+> All routes require authentication **+ admin role**
+
+| Method | Endpoint | Description |
+|---|---|---|
+| GET | `/api/admin/users` | Get all Users |
+| GET | `/api/admin/urls` | Get all URLs |
+| DELETE | `/api/admin/user/:id` | Delete a user |
+| DELETE | `/api/admin/url/:code` | Delete any URL |
+
+---
+
+## Important Logic
+
+### Self-Delete Protection
+Admins cannot delte their own account.
+
+### Cascade cleanup
+When a user is deleted, all their URLs are deleted first.
+
+### Secure Access
+Protected by:
+- `AuthMiddleware()` → verifies JWT
+- `AdminOnly()` → restricts access to admin only
+
+---
+
+## Admin Dashboard UI
+
+The frontend includes a clean admin interface with:
+
+### Tabbed Layout
+- Users Tab
+- URLs Tab
+
+### User Management Table
+- Avatar, Name, Email, Role, Status, Created Date
+- Delete action with confirmation modal
+
+### URL Management Table
+- Short Code, Original URL, User ID, Clicks, Created Date
+- Delete Action with confirmation modal
+
+### Confirmation Modal
+- Prevents accidental deletions
+- Shows loading state while deleting
 
 ## Author 
 Built `by Jaison David M` with **love**
