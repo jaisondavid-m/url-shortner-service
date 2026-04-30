@@ -12,6 +12,7 @@ import MyURLs from "../pages/MyURLs.jsx"
 import NotFound from "../pages/NotFound.jsx"
 import RedirectPage from "../pages/RedirectPage.jsx"
 import AdminPage from "../pages/AdminPage.jsx"
+import Terminal from "../pages/Terminal.jsx"
 
 export default function App() {
   return(
@@ -62,6 +63,16 @@ export default function App() {
                 <ProtectedRoute>
                   <AppLayout>
                     <AdminPage/>
+                  </AppLayout>
+                </ProtectedRoute>
+              }
+          />
+          <Route
+              path="/terminal"
+              element={
+                <ProtectedRoute>
+                  <AppLayout>
+                    <Terminal/>
                   </AppLayout>
                 </ProtectedRoute>
               }
