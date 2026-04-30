@@ -50,6 +50,7 @@ function ResponsiveNavbar() {
                     <button onClick={() => navigate("/expand")} className="cursor-pointer">Expand</button>
                     <button className="cursor-pointer" onClick={() => navigate("/myurls")}>My URLs</button>
                     <button className="cursor-pointer" onClick={() => navigate("/info")}>Info</button>
+                    <button className="cursor-pointer" onClick={() => navigate("/terminal")}>Terminal</button>
                     {user?.role === "admin" && (
                         <button onClick={() => navigate("/admin")} className="cursor-pointer">Admin</button>
                     )}
@@ -82,6 +83,7 @@ function ResponsiveNavbar() {
                     <NavItem label="Custom" onClick={() => navigate("/home?tab=custom")} />
                     <NavItem label="Expand URL" onClick={() => navigate("/expand")} />
                     <NavItem label="My URLs" onClick={() => navigate("/myurls")} />
+                    <NavItem label="Terminal" onClick={() => navigate("/terminal")} />
                     <NavItem label="Profile" onClick={() => navigate("/profile")} />
                     <NavItem label="Info" onClick={() => navigate("/info")} />
                     {user?.role === "admin" && (
