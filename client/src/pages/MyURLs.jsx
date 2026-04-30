@@ -83,7 +83,7 @@ function MyURLs() {
                 <div className="space-y-4">
                     {urls.map((item) => {
 
-                        const shortUrl = `http://localhost:8000/${item.short_code}`
+                        const shortUrl = `https://url-shortner-service-jjjx.onrender.com/${item.short_code}`
 
                         return (
                             <div

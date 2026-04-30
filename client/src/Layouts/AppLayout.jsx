@@ -13,7 +13,6 @@ function AppLayout({ children }) {
             </div>
             <Footer />
         </div>
-
     )
 }
 

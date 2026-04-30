@@ -16,7 +16,7 @@ function RedirectPage() {
     const checkLink = async () => {
         try {
 
-            const res = await fetch(`http://localhost:800/${code}`)
+            const res = await fetch(`https://url-shortner-service-jjjx.onrender.com/${code}`)
 
             if (res.redirected) {
                 window.location.href = res.url
