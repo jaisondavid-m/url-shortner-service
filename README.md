@@ -187,13 +187,20 @@ The app includes a browser-based terminal for power users and developers who pre
 
 ### Available Commands
 
-- shorten <url>                     generate a random short link
-- shorten <url> --pass <password>   generate a password-protected short lin
-- custom <url> <code>               create a custom short lin
-- check <code>                      check if a short code is available or not
-- expand <short-url>                expand a short URL to its original URL
-- clear                             clear the terminal
-- help                              show available commands
+shorten <url>
+    generate a random short link
+shorten <url> --pass <password>
+    generate a password-protected short link
+custom <url> <code>
+    create a custom short link
+check <code>
+    check if a short code is available or not
+expand <short-url>
+    expand a short URL to its original URL
+clear
+    clear the terminal
+help
+    show available commands
 
 ### Features
 
