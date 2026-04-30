@@ -256,5 +256,12 @@ The frontend includes a clean admin interface with:
 - Prevents accidental deletions
 - Shows loading state while deleting
 
+## Demo Credentials (Admin Access)
+
+To explore the Admin Dashboard, use the following credentials:
+* **Email:** [admin@gmail.com](mailto:jaison7373@gmail.com)
+* **Password:** admin123
+> ⚠️ This is a demo admin account. Do not use it for sensitive data
+
 ## Author 
 Built `by Jaison David M` with **love**
