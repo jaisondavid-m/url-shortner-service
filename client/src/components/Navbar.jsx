@@ -73,6 +73,12 @@ function Navbar() {
                         Admin
                     </button>
                 )}
+                <button
+                    onClick={() => navigate("/terminal")}
+                    className="flex items-center gap-2 text-gray-600 hover:text-[#5C3A21] transition"
+                >
+                    Terminal
+                </button>
 
             </div>
             <div className="flex items-center gap-4">

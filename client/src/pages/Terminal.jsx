@@ -70,7 +70,7 @@ function Terminal() {
             return
         }
 
-        if (cmd === "clear") {
+        if (cmd === "clear" || cmd === "cls") {
             setLines([])
             return
         }
