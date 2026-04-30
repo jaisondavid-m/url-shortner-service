@@ -56,7 +56,7 @@ func CreateShortURL(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusOK, gin.H{
-		"short_url": "http://localhost:8000/" + shortCode,
+		"short_url": "https://url-shortner-service-jjjx.onrender.com/" + shortCode,
 		"data":      url,
 		"success":   false,
 	})
@@ -112,7 +112,7 @@ func CreateCustomURL(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusOK,gin.H{
-		"short_url":"http://localhost:8000/" + req.CustomCode,
+		"short_url":"https://url-shortner-service-jjjx.onrender.com/" + req.CustomCode,
 		"data":url,
 		"error":false,
 		"success":true,

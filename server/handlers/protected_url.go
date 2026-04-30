@@ -67,7 +67,7 @@ func CreateProtectedURL(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusOK,gin.H{
-		"short_url":"http://localhost:8000/" + shortCode,
+		"short_url":"https://url-shortner-service-jjjx.onrender.com/" + shortCode,
 		"success":true,
 		"error":false,
 	})
