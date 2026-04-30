@@ -6,7 +6,7 @@ console.log(baseURL)
 
 const api = axios.create({
     // baseURL: baseURL,
-    baseURL: "http://localhost:8000/api",
+    baseURL: "https://url-shortner-service-jjjx.onrender.com/api",
     withCredentials: true,
     headers: {
         "Content-Type":"application/json"
