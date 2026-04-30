@@ -77,7 +77,7 @@ function CustomShortCode() {
                 className="input"
             /> */}
             <div className="flex items-center input">
-                <span className="text-gray-500">http://localhost:8000/</span>
+                <span className="text-gray-500">https://url-shortner-service-jjjx.onrender.com/</span>
                 <input
                     className="flex-1 outline-none ml-1"
                     value={code}
