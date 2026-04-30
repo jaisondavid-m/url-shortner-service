@@ -37,7 +37,7 @@ function ExpandURL() {
     }
 
     return (
-        <div className="w-full flex items-center justify-center bg-[#F8F5F2] flex-1">
+        <div className="w-full mt-36 flex items-center justify-center bg-[#F8F5F2] flex-1">
             <div className="w-full max-w-xl bg-white p-6 rounded-2xl shadow-lg space-y-4">
                 <div className="text-center">
                     <h1 className="text-2xl font-bold text-[#5C3A21]">
