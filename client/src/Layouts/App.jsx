@@ -13,6 +13,7 @@ import NotFound from "../pages/NotFound.jsx"
 import RedirectPage from "../pages/RedirectPage.jsx"
 import AdminPage from "../pages/AdminPage.jsx"
 import Terminal from "../pages/Terminal.jsx"
+import Info from "../pages/Info.jsx"
 
 export default function App() {
   return(
@@ -76,6 +77,16 @@ export default function App() {
                   </AppLayout>
                 </ProtectedRoute>
               }
+          />
+          <Route
+            path="/info"
+            element={
+              <ProtectedRoute>
+                <AppLayout>
+                  <Info/>
+                </AppLayout>
+              </ProtectedRoute>
+            }
           />
           {/* <Route path="/:code" element={<RedirectPage/>} /> */}
           <Route path="/test" element={<TestPage/>} />

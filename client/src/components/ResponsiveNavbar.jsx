@@ -25,7 +25,7 @@ function ResponsiveNavbar() {
     const NavItem = ({ label , onClick }) => (
         <button
             onClick={() => {
-                onclick()
+                onClick()
                 setMenuOpen(false)
             }}
             className="block w-full text-left px-4 py-2 text-gray-700 hover:bg-[#F1EAE4] rounded-lg"
@@ -36,7 +36,7 @@ function ResponsiveNavbar() {
 
     return (
         <>
-            <nav className="w-full sticky-0 top-0 z-50 bg-white border-b px-6 py-3 flex items-center justify-between">
+            <nav className="w-full sticky top-0 z-50 bg-white border-b px-6 py-3 flex items-center justify-between">
                 <div
                     onClick={() => navigate("/home")}
                     className="flex items-center gap-2 cursor-pointer"
@@ -49,6 +49,7 @@ function ResponsiveNavbar() {
                     <button onClick={() => navigate("/home?tab=custom")} className="cursor-pointer">Custom</button>
                     <button onClick={() => navigate("/expand")} className="cursor-pointer">Expand</button>
                     <button className="cursor-pointer" onClick={() => navigate("/myurls")}>My URLs</button>
+                    <button className="cursor-pointer" onClick={() => navigate("/info")}>Info</button>
                     {user?.role === "admin" && (
                         <button onClick={() => navigate("/admin")} className="cursor-pointer">Admin</button>
                     )}
@@ -82,6 +83,7 @@ function ResponsiveNavbar() {
                     <NavItem label="Expand URL" onClick={() => navigate("/expand")} />
                     <NavItem label="My URLs" onClick={() => navigate("/myurls")} />
                     <NavItem label="Profile" onClick={() => navigate("/profile")} />
+                    <NavItem label="Info" onClick={() => navigate("/info")} />
                     {user?.role === "admin" && (
                         <NavItem label="Admin" onClick={() => navigate("/admin")} />
                     )}
