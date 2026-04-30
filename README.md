@@ -186,7 +186,7 @@ The application includes a dedicated **Admin Dashboard** that allows priviliged 
 The app includes a browser-based terminal for power users and developers who prefer a keyboard-driven workflow.
 
 ### Available Commands
-
+```
 shorten <url>
     generate a random short link
 shorten <url> --pass <password>
@@ -201,7 +201,7 @@ clear
     clear the terminal
 help
     show available commands
-
+```
 ### Features
 
 - **Command history** - use the `↑` / `↓` arrow keys to cycle through the previous commands, just like a real terminal
