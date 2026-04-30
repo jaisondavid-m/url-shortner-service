@@ -181,6 +181,39 @@ The application includes a dedicated **Admin Dashboard** that allows priviliged 
 
 ---
 
+## Terminal Interface
+
+The app includes a browser-based terminal for power users and developers who prefer a keyboard-driven workflow.
+
+### Available Commands
+
+- shorten <url>                     generate a random short link
+- shorten <url> --pass <password>   generate a password-protected short lin
+- custom <url> <code>               create a custom short lin
+- check <code>                      check if a short code is available or not
+- expand <short-url>                expand a short URL to its original URL
+- clear                             clear the terminal
+- help                              show available commands
+
+### Features
+
+- **Command history** - use the `↑` / `↓` arrow keys to cycle through the previous commands, just like a real terminal
+- **Password-protected links** - pass `--pass <password>` inline; no seperate form needed
+- **Real-time feedback** - colored output distinguishes prompts, results, errors and success messages at a glance
+- **Non-blocking input** - The input field is disabled during requests to prevent duplicate submissions
+- **Auto-Scroll** - output automatically scrolls to the latest line as commands run
+- **Clicks-to-focus** - Clicking anywhere on the terminal panel focuses the input
+
+### Output Colors
+| Color | Meaning |
+|---|---|
+| Green (prompt) | Your command input |
+| Yellow | Short URLs |
+| Bright green | Success Messages |
+| Red | Errors |
+| Blue | Info/banners |
+| Gray | Muted / loading text |
+
 ## Important Logic
 
 ### Self-Delete Protection
